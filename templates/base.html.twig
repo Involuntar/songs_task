@@ -11,6 +11,13 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
+    <header>
+        <ul>
+            <li><a href="{{ path('app_login') }}">Войти</a></li>
+            <li><a href="{{ path('app_register') }}">Зарегистрироваться</a></li>
+            <li><a href="{{ path('_logout_main') }}">Выйти</a></li>
+        </ul>
+    </header>
     <body>
         {% block body %}{% endblock %}
     </body>
