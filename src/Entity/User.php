@@ -39,6 +39,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $device_id = null;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $access_token = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +129,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): static
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getDeviceId(): ?string
+    {
+        return $this->device_id;
+    }
+
+    public function setDeviceId(string $device_id): static
+    {
+        $this->device_id = $device_id;
+
+        return $this;
+    }
+
+    public function getAccessToken(): ?string
+    {
+        return $this->access_token;
+    }
+
+    public function setAccessToken(string $access_token): static
+    {
+        $this->access_token = $access_token;
 
         return $this;
     }

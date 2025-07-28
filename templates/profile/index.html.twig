@@ -17,14 +17,33 @@
 		}
 	</style>
 
-	<div class="example-wrapper">
-		<h1>Hello,
-			{{ firstname }}
-			{{ lastname }}! ✅</h1>
+    <div>
+    Hello {{ firstname }} {{ lastname }}!
+    </div>
 
-		<a href="https://id.vk.com/authorize?response_type=code&
-        client_id=12345&scope=email%20phone&redirect_uri=https%3A%2
-        F%2Fyour.site&state=XXXRandomZZZ&code_challenge=
-        K8KAyQ82WSEncryptedVerifierGYUDj8K&code_challenge_method=S256">Привязать ВК</a>
-	</div>
+    <div class="example-wrapper">
+        <h1>Привязка ВКонтакте</h1>
+        <p>Нажмите на кнопку ниже, чтобы привязать свой аккаунт ВКонтакте.</p>
+        <p>После привязки вы сможете использовать функционал, связанный с ВКонтакте.</p>
+
+    </div>
+	<button id="vk_button">Привязать ВК</button>
+
+<script>
+// 1. Get the button element by its ID
+const myButton = document.getElementById('vk_button');
+// 2. Define the function to be executed on the event
+function handleClick() {
+    const query = "?response_type=code" +
+    "&client_id=53957545" +
+    "&scope=email" +
+    "&redirect_uri=http%3A%2F%2Flocalhost%2Fcallback_vk" +
+    `&state=XXXRandomZZZ` +
+    "&code_challenge=v6UszkUn_bsLQAZnsfZJXx1pXonxVJYua-58sSENi5s" +
+    "&code_challenge_method=S256";
+    location.assign('https://id.vk.com/authorize' + query);
+}
+// 3. Add the event listener to the button
+myButton.addEventListener('click', handleClick);
+</script>
 {% endblock %}
