@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+    <div>Музыка {{ user_info.first_name }} {{ user_info.last_name }}</div>
+    {% if user_info.music %}
+    {{ user_info.music }}
+    {% else %}
+    <div>Упс. Музыки нет :(</div>
+    {% endif %}
+    <a href="{{ path("app_profile") }}">В Профиль</a>
+
+<script>
+
+</script>
+{% endblock %}

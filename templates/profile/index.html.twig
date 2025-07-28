@@ -18,7 +18,10 @@
 	</style>
 
     <div>
-    Hello {{ firstname }} {{ lastname }}!
+    Hello {{ user.firstname }} {{ user.lastname }}!
+    {% if access_token %}
+    <a href="{{ path("music_vk") }}">Музыка пользователя</a>
+    {% endif %}
     </div>
 
     <div class="example-wrapper">

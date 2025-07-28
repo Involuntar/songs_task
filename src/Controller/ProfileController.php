@@ -25,8 +25,8 @@ final class ProfileController extends AbstractController
         $user = $this->getUser();
 
         return $this->render('profile/index.html.twig', [
-            'firstname' => $user->getFirstname(),
-            "lastname" => $user->getLastname()
+            "user" => $user,
+            "access_token" => $user->getAccessToken(),
         ]);
     }
 
@@ -70,5 +70,19 @@ final class ProfileController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('app_profile');
+    }
+
+    #[Route(path: "/music_vk", name: "music_vk")]
+    public function music_vk()
+    {
+        $access_token = $this->getUser()->getAccessToken();
+        $response = $this->httpClient->request(
+            method: "POST",
+            url: "https://api.vk.com/method/users.get?name_case=Gen&fields=music&access_token=". $access_token ."&v=5.199"
+        )->toArray()["response"][0];
+
+        return $this->render("profile/music.html.twig", [
+            "user_info" => $response,
+        ]);
     }
 }
